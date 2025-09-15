@@ -208,16 +208,17 @@ async def anime(data):
                     asyncio.create_task(exe.further_work())
                     continue
                 await reporter.report_error(_btn, log=True)
-                await reporter.msg.delete()
+                if reporter.msg:
+                    try:
+                        await reporter.msg.delete()
+                    except:
+                        pass
             except BaseException:
                 await reporter.report_error(str(format_exc()), log=True)
-                await reporter.msg.delete()
+                if reporter.msg:
+                    try:
+                        await reporter.msg.delete()
+                    except:
+                        pass
     except BaseException:
         LOGS.error(str(format_exc()))
-
-
-try:
-    bot.loop.run_until_complete(subsplease.on_new_anime(anime))
-    bot.run()
-except KeyboardInterrupt:
-    subsplease._exit()
