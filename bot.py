@@ -52,9 +52,7 @@ async def _start(event):
     await dB.add_broadcast_user(event.sender_id)
     if Var.FORCESUB_CHANNEL and Var.FORCESUB_CHANNEL_LINK:
         is_user_joined = await bot.is_joined(Var.FORCESUB_CHANNEL, event.sender_id)
-        if is_user_joined:
-            pass
-        else:
+        if not is_user_joined:
             return await xnx.edit(
                 f"**Please Join The Following Channel To Use This Bot 🫡**",
                 buttons=[
@@ -109,9 +107,7 @@ async def _start(event):
     await xnx.delete()
 
 
-@bot.on(
-    events.NewMessage(incoming=True, pattern="^/about", func=lambda e: e.is_private)
-)
+@bot.on(events.NewMessage(incoming=True, pattern="^/about", func=lambda e: e.is_private))
 async def _(e):
     await admin._about(e)
 
@@ -222,3 +218,16 @@ async def anime(data):
                         pass
     except BaseException:
         LOGS.error(str(format_exc()))
+
+
+# =====================  BOT RUNNER  =====================
+
+try:
+    # Start SubsPlease listener
+    bot.loop.run_until_complete(subsplease.on_new_anime(anime))
+
+    # Keep the bot alive
+    bot.run_until_disconnected()
+
+except KeyboardInterrupt:
+    subsplease._exit()
