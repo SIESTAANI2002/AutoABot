@@ -37,11 +37,11 @@ class Var:
 
     # Channels Ids
 
-    BACKUP_CHANNEL = config("BACKUP_CHANNEL", default=0, cast=int)
+    BACKUP_CHANNEL = config("BACKUP_CHANNEL", default="-4836174866", cast=int)
     MAIN_CHANNEL = config("MAIN_CHANNEL", default="-1001716059269", cast=int)
     LOG_CHANNEL = config("LOG_CHANNEL", default="-4707531704", cast=int)
     CLOUD_CHANNEL = config("CLOUD_CHANNEL", default="-4881206085", cast=int)
-    FORCESUB_CHANNEL = config("FORCESUB_CHANNEL", default=0, cast=int)
+    FORCESUB_CHANNEL = config("FORCESUB_CHANNEL", default="-4936234492", cast=int)
     OWNER = config("OWNER", default="5074446156", cast=int)
 
     # Other Configs
