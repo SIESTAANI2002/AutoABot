@@ -47,7 +47,7 @@ class SubsPlease:
     def rss_feed_data(self):
         try:
             return (
-                parse("https://subsplease.org/rss/?r=1080"),
+                parse("https://nyaa.si/?page=rss&q=%5BASW%5D&c=0_0&f=0"),
                 parse("https://subsplease.org/rss/?r=720"),
                 parse("https://subsplease.org/rss/?r=sd"),
             )
